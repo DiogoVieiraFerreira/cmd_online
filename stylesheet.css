@@ -1,0 +1,16 @@
+@font-face {
+    font-family: dos;
+    src: url("fonts/Perfect DOS VGA 437 win.ttf");
+}
+html
+{
+    font-family: 'dos';
+    font-size: 40px;
+}
+.terminal{
+    background: black;
+    color: white;
+    padding: 10px;
+    height: 100px;
+    overflow: hidden;
+}
