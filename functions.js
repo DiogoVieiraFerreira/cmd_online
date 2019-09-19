@@ -1,9 +1,6 @@
-
+$ok=false;
 $(function() {
-    //disable right click
-    $(document).bind("contextmenu",function(e){
-        return false;
-    });
+
     //read keyboard
     $(document).keydown(function(e){
         e.preventDefault();
@@ -74,23 +71,29 @@ $(function() {
     }
 
     function inputCheck($path,$string) {
-        history($path,$string);
-        $ip= $string.substring($string.lastIndexOf('ip '),$string.length)
 
-        $.ajax({
-            url: "http://localhost:3666/granolax",
-            type: 'POST',
-            data: {
-                "ip" : $ip
-            },
-            error : function(err) {
-                console.log('Error!', err)
-            },
-            success: function(data) {
-                console.log(data)
-                localStorage.setItem('token', data.id_token);
-            }
-        })
+        history($path,$string);
+        console.log($string.toUpperCase());
+        if($string=="ip 10.229.37.109")
+        {
+            $("#path").text("10.229.37.109's Password: ");
+            $ok=true;
+        }
+        else if($ok==true && $string.toUpperCase()=="I LOVE POUTINE")
+        {
+            $("#line").remove();
+            $("#history").text("");
+            $("#history").append("Mince, ce PC n'a pas accès au réseau extérieur! <br><br>Il faut que j'aille à la salle serveur pour utiliser l'ordinateur URSS, si je me rappelle bien la salle se nomme C111. Elle se situe au rez-de-chaussée.");
+            $("#history").append("<br><br>Il ne faut pas que j'oublie l'adresse du serveur US - 10.229.37.109!");
+            $("#path").text("");
+        }
+        else
+        {
+            history("","<br>Données incorrectes veuillez re-essayer<br>");
+            $ok=false;
+            $("#path").text("C:\\>");
+        }
+
     }
 });
 
