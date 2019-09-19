@@ -20,6 +20,15 @@ $(function() {
             case 18://alt
             case 20://capslock
             case 93://menu
+            case 27://escape
+            case 45://insert
+            case 36://home
+            case 33://pgUp
+            case 34://pgDown
+            case 35://end
+            case 46://delete
+            case 144://numlock
+            case 191://§
             case 112://F1
             case 113:
             case 114:
@@ -57,7 +66,13 @@ $(function() {
         if(e.ctrlKey && e.keyCode==65) {
             $("#input").addClass("selected");
         }
-        //console.log('key code is: ' + e.which + ' ' + (e.ctrlKey ? 'Ctrl' : '') + ' ' + (e.shiftKey ? 'Shift' : '') + ' ' + (e.altKey ? 'Alt' : ''));
+        else if(e.ctrlKey && e.keyCode==76)
+        {
+            $("#history").text("Allez chez nos ennemis qui nous regardent d'en haut. Je suis monochrome, vous devrez utiliser votre téléphone pour me lire.\n");
+            $("#history").append("<br>");
+            $("#input").text("");
+        }
+       //console.log('key code is: ' + e.which + ' ' + (e.ctrlKey ? 'Ctrl' : '') + ' ' + (e.shiftKey ? 'Shift' : '') + ' ' + (e.altKey ? 'Alt' : ''));
     });
 
     function history($path, $string) {
@@ -87,7 +102,7 @@ $(function() {
             $("#history").append("<br><br>Il ne faut pas que j'oublie l'adresse du serveur US - 10.229.37.109!");
             $("#path").text("");
         }
-        else
+        else if ($string!="cls")
         {
             history("","<br>Données incorrectes veuillez re-essayer<br>");
             $ok=false;
